@@ -1,4 +1,4 @@
-package com.clovexx.shoppe.ui.theme
+package com.clovexx.shoppe.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
