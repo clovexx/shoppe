@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -17,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.clovexx.shoppe.Runner"
     }
 
     buildTypes {
@@ -74,9 +75,22 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
+    // --- Supabase ---
+    implementation(platform(libs.supabase))
+    implementation(libs.supabase.postgres)
+    implementation(libs.supabase.storage)
+    implementation(libs.ktor)
+
     // --- Utils ---
     implementation(libs.coil.compose)
     coreLibraryDesugaring(libs.desugar)
+    implementation(libs.core.splashscreen)
+    implementation(libs.coil.svg)
+    implementation(libs.lottie)
+    implementation(libs.datastore)
+    implementation(libs.datastore.preferences)
+    implementation(libs.gson)
+    implementation(libs.security.crypto)
 
     // --- Testing: Unit ---
     testImplementation(libs.junit)
@@ -92,6 +106,9 @@ dependencies {
     androidTestImplementation(libs.arch.core.testing)
     androidTestImplementation(libs.truth)
     androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.compiler)
+
 
     // --- Debug (UI tooling only in debug) ---
     debugImplementation(libs.compose.ui.tooling)
